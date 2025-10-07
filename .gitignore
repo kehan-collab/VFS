@@ -1,0 +1,5 @@
+# Ignore runtime files
+filesystem.bin
+users.bin
+*.pyc
+__pycache__/
