@@ -110,6 +110,8 @@ def shell():
         else:
             print("Unknown command. Type 'help'.")
 
+        print();
+
 
 if __name__ == "__main__":
     help_menu()
