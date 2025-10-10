@@ -1,5 +1,6 @@
 # vfs/search.py
 
+
 def search_by_name(folder, name):
     results = []
     if name in folder.files:
@@ -12,6 +13,7 @@ def search_by_name(folder, name):
             results.append(f"Folder: {dname}")
         results += search_by_name(dobj, name)
     return results
+
 
 def search_by_content(folder, text):
     results = []

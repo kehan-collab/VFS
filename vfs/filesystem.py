@@ -17,24 +17,17 @@ class File:
 class Folder:
     def __init__(self, name):
         self.name = name
-        self.files = {}  # name -> File
-        self.folders = {}  # name -> Folder
+        self.files = {}
+        self.folders = {}
 
 
 class FileSystem:
     def __init__(self):
         self.root = Folder("root")
         self.current_folder = self.root
-        self.path_stack = [self.root]  # keeps track of current path
+        self.path_stack = [self.root]
 
-    # -------------------------------
-    # Utility
-    # -------------------------------
     def _resolve_path(self, path):
-        """
-        Returns folder object for the given path.
-        Supports relative and absolute paths.
-        """
         parts = [p for p in path.strip("/").split("/") if p]
         folder = self.root if path.startswith("/") else self.current_folder
         for part in parts:
@@ -50,8 +43,6 @@ class FileSystem:
         return folder
 
     def _get_parent(self, target_folder):
-        """Find the parent folder of a given folder (slow but simple)."""
-
         def _find_parent(folder, child):
             for sub in folder.folders.values():
                 if sub is child:
@@ -72,9 +63,6 @@ class FileSystem:
             folder = parent
         return "/" + "/".join(reversed(names))
 
-    # -------------------------------
-    # Commands
-    # -------------------------------
     def mkdir(self, path):
         parts = [p for p in path.strip("/").split("/") if p]
         folder = self.root if path.startswith("/") else self.current_folder
@@ -147,9 +135,6 @@ class FileSystem:
         else:
             print("Folder not found")
 
-    # -------------------------------
-    # Persistence
-    # -------------------------------
     def save(self):
         with open(FS_FILENAME, "wb") as f:
             pickle.dump(self, f)

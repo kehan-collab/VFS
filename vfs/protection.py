@@ -2,13 +2,14 @@
 from .utils import hash_password
 import getpass
 
+
 class ProtectionManager:
     def __init__(self):
-        self.protected = {}  # folder_path -> hashed_pw
+        self.protected = {}
 
     def protect_folder(self, folder_path):
         pw = getpass.getpass(f"Set password for {folder_path}: ")
-        salt = "folder_salt"  # can be randomized per folder
+        salt = "folder_salt"
         self.protected[folder_path] = hash_password(pw, salt)
         print(f"Folder '{folder_path}' protected")
 
