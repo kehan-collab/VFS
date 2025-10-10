@@ -1,6 +1,7 @@
 # vfs/journaling.py
 from .utils import get_timestamp
 
+
 class Journal:
     def __init__(self):
         self.entries = []
